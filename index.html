@@ -20,16 +20,6 @@
   </div>
   <div id="view-count">再生回数を取得中...</div>
 
-<script>
-  const videoId = "YOUR_VIDEO_ID";
-  const apiKey = "YOUR_API_KEY";
 
-  fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-      const views = data.items[0].statistics.viewCount;
-      document.getElementById("view-count").innerText = `再生回数: ${views} 回`;
-    });
-</script>
 </body>
 </html>
