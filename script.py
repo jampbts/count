@@ -1,5 +1,6 @@
 import os, json, requests
 from datetime import datetime
+from googleapiclient.discovery import build
 
 API_KEY = os.environ["YOUTUBE_API_KEY"]
 
@@ -16,23 +17,30 @@ VIDEO_IDS = [
 DATA_FILE = "data.json"
 
 def get_stats(video_ids):
-    url = "https://www.googleapis.com/youtube/v3/videos"
-    params = {"part": "statistics,snippet", "id": ",".join(video_ids), "key": API_KEY}
-    r = requests.get(url, params=params)
-    r.raise_for_status()
-    data = r.json()
+    youtube = build('youtube', 'v3', developerKey=API_KEY)
+    request = youtube.videos().list(
+        part='statistics,snippet',
+        id=','.join(video_ids)
+    )
+    response = request.execute()
+    
     results = {}
-    for it in data.get("items", []):
-        vid = it["id"]
-        title = it["snippet"]["title"]
-        views = int(it["statistics"]["viewCount"])
+    for item in response.get("items", []):
+        vid = item["id"]
+        title = item["snippet"]["title"]
+        views = int(item["statistics"]["viewCount"])
         results[vid] = {"title": title, "views": views}
     return results
 
 def load_old_data():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+    try:
+        # Try to download the old data from gh-pages branch
+        url = f"https://raw.githubusercontent.com/{os.environ['GITHUB_REPOSITORY']}/gh-pages/{DATA_FILE}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+    except Exception as e:
+        print(f"Failed to load old data: {e}")
     return {}
 
 def save_new_data(data):
@@ -41,23 +49,53 @@ def save_new_data(data):
 
 def make_html(old, new):
     today = datetime.utcnow().strftime("%Y-%m-%d")
-    html = f"<html><head><meta charset='utf-8'><title>AgustD Weekly Stats</title></head><body>"
-    html += f"<h1>AgustD Weekly Stats ({today})</h1>"
-    html += "<table border='1' cellpadding='5'><tr><th>Title</th><th>This Week</th><th>Total</th></tr>"
-    total_week = 0
-    total_all = 0
+    html = f"""
+    <html>
+    <head>
+        <meta charset='utf-8'>
+        <title>AgustD Weekly Stats</title>
+        <style>
+            body {{ font-family: sans-serif; margin: 2rem; }}
+            h1, h2 {{ color: #333; }}
+            table {{ width: 100%; border-collapse: collapse; margin-top: 1rem; }}
+            th, td {{ padding: 12px; border: 1px solid #ddd; text-align: left; }}
+            th {{ background-color: #f2f2f2; }}
+            tr:nth-child(even) {{ background-color: #f9f9f9; }}
+            .container {{ max-width: 800px; margin: auto; }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>AgustD Weekly Stats ({today})</h1>
+            <p>※週間再生回数は前週比</p>
+            <table>
+                <tr>
+                    <th>タイトル</th>
+                    <th>今週の再生回数</th>
+                    <th>累計再生回数</th>
+                </tr>
+    """
+    total_week_increase = 0
+    
     for vid, info in new.items():
         old_views = old.get(vid, {}).get("views", 0)
-        diff = info["views"] - old_views
-        total_week += diff
-        total_all += info["views"]
-        html += f"<tr><td>{info['title']}</td><td>{diff:,}</td><td>{info['views']:,}</td></tr>"
-    html += f"</table><h2>This Week Total: {total_week:,}</h2><h2>All Time Total: {total_all:,}</h2>"
-    html += "</body></html>"
+        weekly_increase = info["views"] - old_views
+        total_week_increase += weekly_increase
+        html += f"<tr><td>{info['title']}</td><td>{weekly_increase:,}</td><td>{info['views']:,}</td></tr>"
+
+    html += f"""
+            </table>
+            <h2>今週の合計再生回数: {total_week_increase:,}</h2>
+            <h2>全ての累計再生回数: {sum(v['views'] for v in new.values()):,}</h2>
+        </div>
+    </body>
+    </html>
+    """
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
 if __name__ == "__main__":
-    old = load_old_data()
-    new = get_stats(VIDEO_IDS)
-    make_html(old, new)
+    old_data = load_old_data()
+    new_data = get_stats(VIDEO_IDS)
+    make_html(old_data, new_data)
+    save_new_data(new_data)
