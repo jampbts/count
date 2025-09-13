@@ -57,7 +57,3 @@ p {
 
 }
 
-/*タイトルを省略*/
-.embed_main__FMRQs div:first-child {
-  justify-self: baseline;
-}
