@@ -54,7 +54,7 @@ p {
   flex-flow:column;
 }
 .flex-column * {
-
+margin-left:10px;
 }
 .embed_main__FMRQs div:first-child {
   justifi-self: baseline;
