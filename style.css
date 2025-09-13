@@ -1,0 +1,50 @@
+/* 文字コードの指定（日本語環境ではUTF-8が一般的） */
+@charset "UTF-8";
+
+/* 全要素の余白をリセットし、box-sizingを統一 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML5要素の表示をblockに統一（古いブラウザ対策） */
+article, aside, footer, header, nav, section {
+  display: block;
+}
+
+/* ベースフォントと背景色の設定 */
+body {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+/* リンクのスタイル（下線を消して色を統一） */
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* 画像の最大幅を制限してはみ出し防止 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 見出しの余白調整 */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+/* 段落の余白 */
+p {
+  margin-bottom: 1em;
+}
