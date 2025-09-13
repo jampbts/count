@@ -54,7 +54,7 @@ p {
   flex-flow:column;
 }
 .flex-column * {
-  margin-bottom:10px;
+
 }
 
 /*タイトルを省略*/
