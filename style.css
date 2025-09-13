@@ -58,6 +58,6 @@ p {
 }
 
 /*タイトルを省略*/
-div:first-child{
+.title:first-child{
   justify-self: auto;
 }
