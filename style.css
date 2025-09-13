@@ -56,3 +56,8 @@ p {
 .flex-column * {
   margin-bottom:10px;
 }
+
+/*タイトルを省略*/
+div:first-child{
+  justify-self: auto;
+}
