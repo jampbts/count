@@ -36,7 +36,10 @@
             const loadingMessage = document.getElementById('loading-message');
             const lastUpdatedElement = document.getElementById('last-updated');
 
-            fetch('https://jampbts.github.io/count/data.json')
+            // データのURLをGitHub Pagesの絶対パスで指定
+            const dataUrl = 'https://jampbts.github.io/count/data.json';
+
+            fetch(dataUrl)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
