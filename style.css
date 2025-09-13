@@ -58,6 +58,6 @@ p {
 }
 
 /*タイトルを省略*/
-div.title{
-  justify-self: auto;
+.embed_main__FMRQs div:first-child {
+  justify-self: baseline;
 }
