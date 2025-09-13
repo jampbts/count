@@ -56,4 +56,6 @@ p {
 .flex-column * {
 
 }
-
+.embed_main__FMRQs div:first-child {
+  justifi-self: baseline;
+}
