@@ -49,7 +49,7 @@ p {
   margin-bottom: 1em;
 }
 /*コンテンツを立て並び*/
-.frex-row {
+.frex-column {
   display: flex;
-  flex-flow:row no-wrap;
+  flex-flow:column no-wrap;
 }
