@@ -61,4 +61,3 @@ if __name__ == "__main__":
     old = load_old_data()
     new = get_stats(VIDEO_IDS)
     make_html(old, new)
-    sa
