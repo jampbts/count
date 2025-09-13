@@ -3,36 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="styleswwt" src="style.css">
-    <title>My Website</title>
-
+    <title>私のウェブサイト</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #555;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .video-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .video-item {
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .video-item:hover {
+            transform: translateY(-2px);
+        }
+        iframe {
+            flex-shrink: 0; /* iframeの縮小を防ぐ */
+            width: 300px; /* 固定幅 */
+            height: 80px;
+            border: 0;
+            margin-right: 20px;
+        }
+        .video-stats {
+            flex-grow: 1; /* 残りのスペースを埋める */
+            line-height: 1.5;
+            font-size: 16px;
+        }
+        .video-stats strong {
+            color: #007bff;
+        }
+        .title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        #last-updated {
+            text-align: right;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        #loading-message {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>私のウェブサイト</h1>
-  <div class="flex-column">
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/iy9qZR_OGa0 style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/uVD-YgzDzyY style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/IX1dkYoLHVs style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/qGjAWJ2zWWI style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/_Zgc12yL5ss style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/3Y_Eiyg4bfk style="border: 0; width:100%; height:80px;"></iframe>
-    <iframe height="80px" width="100%" frameborder="0" src=https://livecounts.io/embed/youtube-live-view-counter/PV1gCvzpSy0 style="border: 0; width:100%; height:80px;"></iframe>
+    <div class="container">
+        <h1>私のウェブサイト</h1>
+        
+        <div class="video-wrapper">
+            <div class="video-item" data-video-id="iy9qZR_OGa0">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/iy9qZR_OGa0"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-video-id="uVD-YgzDzyY">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/uVD-YgzDzyY"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
 
-  </div>
+            <div class="video-item" data-video-id="IX1dkYoLHVs">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/IX1dkYoLHVs"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
 
-    <!-- データ表示用のコンテナ -->
-    <div id="youtube-stats-container" class="stats-container">
-        <h2>YouTube 再生回数</h2>
-        <p id="last-updated"></p>
-        <div id="stats-table-wrapper"></div>
+            <div class="video-item" data-video-id="qGjAWJ2zWWI">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/qGjAWJ2zWWI"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
+
+            <div class="video-item" data-video-id="_Zgc12yL5ss">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/_Zgc12yL5ss"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
+            
+            <div class="video-item" data-video-id="3Y_Eiyg4bfk">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/3Y_Eiyg4bfk"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
+
+            <div class="video-item" data-video-id="PV1gCvzpSy0">
+                <iframe height="80px" width="100%" frameborder="0" src="https://livecounts.io/embed/youtube-live-view-counter/PV1gCvzpSy0"></iframe>
+                <div class="video-stats">
+                    <div class="title"></div>
+                    <div>週間再生回数: <strong class="views-this-week">--</strong></div>
+                    <div>累計再生回数: <strong class="views-total">--</strong></div>
+                </div>
+            </div>
+        </div>
+
         <p id="loading-message">データを読み込み中...</p>
+        <p id="last-updated"></p>
+
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('youtube-stats-container');
-            const tableWrapper = document.getElementById('stats-table-wrapper');
             const loadingMessage = document.getElementById('loading-message');
             const lastUpdatedElement = document.getElementById('last-updated');
 
@@ -50,30 +176,19 @@
                     // 日付を表示
                     lastUpdatedElement.textContent = `最終更新日: ${data.date}`;
                     
-                    // テーブルを動的に生成
-                    let tableHTML = '<table class="stats-table"><tr><th>タイトル</th><th>今週の増加数</th><th>累計再生回数</th></tr>';
-                    let total_week = 0;
-                    let total_all = 0;
-
+                    // JSONのvideos配列をループ処理
                     data.videos.forEach(video => {
-                        total_week += video.views_this_week;
-                        total_all += video.views_total;
-                        tableHTML += `<tr>
-                            <td>${video.title}</td>
-                            <td>${video.views_this_week.toLocaleString()}</td>
-                            <td>${video.views_total.toLocaleString()}</td>
-                        </tr>`;
+                        // HTML上の対応する動画コンテナを動画IDで検索
+                        const videoContainer = document.querySelector(`.video-item[data-video-id="${video.videoId}"]`);
+
+                        if (videoContainer) {
+                            // タイトルと再生回数を挿入
+                            videoContainer.querySelector('.title').textContent = video.title;
+                            videoContainer.querySelector('.views-this-week').textContent = video.views_this_week.toLocaleString();
+                            videoContainer.querySelector('.views-total').textContent = video.views_total.toLocaleString();
+                        }
                     });
 
-                    // 合計行を追加
-                    tableHTML += `<tr>
-                        <td><strong>合計</strong></td>
-                        <td><strong>${total_week.toLocaleString()}</strong></td>
-                        <td><strong>${total_all.toLocaleString()}</strong></td>
-                    </tr>`;
-
-                    tableHTML += '</table>';
-                    tableWrapper.innerHTML = tableHTML;
                     loadingMessage.style.display = 'none'; // 読み込みメッセージを非表示
                 })
                 .catch(error => {
