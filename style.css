@@ -107,3 +107,26 @@ iframe {
   padding: 20px;
   color: #888;
 }
+
+/* ===============================
+   スマホ対応 (画面幅が600px以下の場合)
+   =============================== */
+@media (max-width: 600px) {
+  .video-item {
+    flex-direction: column; /* 縦並びにする */
+    align-items: flex-start;
+  }
+
+  iframe {
+    width: 100%;   /* 親要素に合わせる */
+    height: 80px;  /* 高さは維持 */
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .video-stats {
+    font-size: 18px; /* 少し小さめにして見やすく */
+    line-height: 1.6;
+  }
+}
+
