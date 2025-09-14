@@ -88,7 +88,8 @@
             const lastUpdatedElement = document.getElementById('last-updated');
 
             // データのURLをGitHub Pagesの絶対パスで指定
-            const dataUrl = 'https://jampbts.github.io/count/data.json';
+            //const dataUrl = 'https://jampbts.github.io/count/data.json'; 250914下記に書き換え
+            const dataUrl = 'https://jampbts.github.io/count/data.json?' + new Date().getTime();
 
             fetch(dataUrl)
                 .then(response => {
