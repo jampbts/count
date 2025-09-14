@@ -7,7 +7,7 @@ API_KEY = os.environ["YOUTUBE_API_KEY"]
 
 # 取得したい動画IDのリスト
 VIDEO_IDS = [
-    "g-l9h0Lg948", # Haegeum (修正済み)
+    "iy9qZR_OGa0", # Haegeum
     "uVD-YgzDzyY", # People Pt.2
     "IX1dkYoLHVs", # AMYGDALA
     "qGjAWJ2zWWI", # Daechwita
