@@ -75,8 +75,8 @@ iframe {
    =============================== */
 .video-stats {
   flex-grow: 1;         /* 残りスペースを埋める */
-  line-height: 1.5;
-  font-size: 16px;
+  line-height: 1.8;
+  font-size: 23px;
 }
 
 .video-stats strong {
