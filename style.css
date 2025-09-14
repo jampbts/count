@@ -14,9 +14,9 @@ body {
   max-width: 900px;
   margin: 0 auto;
   background-color: #fff;   /* 白背景 */
-  padding: 20px;
+  /*余白を縮める padding: 20px;*/
   border-radius: 8px;       /* 角丸 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影をつける */
+  /*余白を縮める box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/ /* 影をつける */
 }
 
 /* ===============================
@@ -42,7 +42,7 @@ h2 {
 .video-wrapper {
   display: flex;
   flex-direction: column;   /* 縦並び */
-  gap: 15px;                /* 各動画の間隔 */
+  /*余白を縮める gap: 15px;*/ /* 各動画の間隔 */
 }
 
 /* 各動画のボックス */
@@ -50,17 +50,18 @@ h2 {
   display: flex;
   align-items: center;
   background-color: #f9f9f9;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s;
+  /*余白を縮める box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);*/
+  /*余白を縮める transition: transform 0.2s;*/
+   border-bottom: 1px #ddd dotted;
 }
 
-/* ホバー時に少し浮き上がる */
+/* ホバー時に少し浮き上がる
 .video-item:hover {
   transform: translateY(-2px);
 }
-
+*/
 /* YouTube埋め込み部分 */
 iframe {
   flex-shrink: 0;       /* 縮小を防ぐ */
@@ -121,12 +122,12 @@ iframe {
     width: 100%;   /* 親要素に合わせる */
     height: 80px;  /* 高さは維持 */
     margin-right: 0;
-    margin-bottom: 10px;
+    /*余白を縮める margin-bottom: 10px;*/
   }
 
   .video-stats {
-    font-size: 18px; /* 少し小さめにして見やすく */
-    line-height: 1.6;
+    font-size: 14px; /* 少し小さめにして見やすく */
+    line-height: 1.3;
   }
 }
 
